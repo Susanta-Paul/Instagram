@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.full{
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: center;
+    /* border: 2px solid red; */
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    &:hover{
+        background-color: rgb(231, 229, 229);
+    }
+}

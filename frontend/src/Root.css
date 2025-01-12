@@ -1,0 +1,28 @@
+.featues{
+    width: 100%;
+}
+.sidebar{
+    padding-left: 20px;
+    width: 14vw;
+    border-width: 0 1px 0 0;
+    border-color: rgb(160, 160, 160);
+    border-style: solid;
+    height: 100vh;
+}
+.insta-name{
+    padding: 20px 0px;
+    width: 100%;
+}
+.insta-name img{
+    width: 65%;
+}
+.main{
+    /* background-color: red; */
+    height: 100vh;
+    width: 86vw;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.body{
+    display: flex;
+}

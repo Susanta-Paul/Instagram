@@ -1,0 +1,13 @@
+.all-explore-posts{
+    width: 90%;
+    padding: 30px;
+    column-width: 200px;
+    /* gap: 5px; */
+}
+.explore-post{
+    width: 100%;
+}
+.explore-post img{
+    width: 100%;
+    border-radius: 10px;
+}
