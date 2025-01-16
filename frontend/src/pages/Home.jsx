@@ -31,7 +31,7 @@ export default function Home(){
         {
             username: "Angle_Priya",
             pp: "https://i.pinimg.com/736x/57/6c/49/576c49fbd479fa8eaf3404ce62179787.jpg",
-            content: "https://m.media-amazon.com/images/I/515aq1ptCWL._AC_UF1000,1000_QL80_.jpg",
+            content: "https://photosgreet.com/wp-content/uploads/cute-instagram-profile-picture_53.webp",
             likes: "100K",
             comment: "10K",
             shares: "69K",
@@ -40,7 +40,7 @@ export default function Home(){
         {
             username: "Angle_Priya",
             pp: "https://content.tupaki.com/h-upload/2024/10/18/555357-10818tek.webp",
-            content: "https://i.pinimg.com/736x/9a/a6/7b/9aa67b7a503962af8f80b4f7ad198f1f.jpg",
+            content: "https://photosly.net/wp-content/uploads/2023/11/real-girl-pic49.jpg",
             likes: "100K",
             comment: "10K",
             shares: "69K",
