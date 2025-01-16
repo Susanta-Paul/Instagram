@@ -8,6 +8,7 @@ import Upload from "./pages/Upload.jsx";
 import RootLayout from './RootLayout'
 import Login from './pages/Login.jsx'
 import Signup from './Components/Signup.jsx'
+import Profile from './pages/profile.jsx'
 import {Route, createBrowserRouter, createRoutesFromElements, RouterProvider} from "react-router-dom"
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route index element={<Home />} /> 
           <Route path='explore' element={<Explore />} /> 
           <Route path='upload' element={<Upload />} /> 
+          <Route path='profile' element={<Profile />} /> 
           </Route> 
         <Route path='/login' element={<Login />} /> 
         <Route path='/signup' element={<Signup />} /> 

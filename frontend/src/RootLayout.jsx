@@ -22,7 +22,7 @@ export default function RootLayout(){
         {logo:<RiMessengerLine style={{width: "30px", height: "30px"}}  /> , name:"Messages", path: "/"},
         {logo:<FaRegHeart style={{width: "30px", height: "30px"}}  /> , name:"Notifications", path: "/"},
         {logo:<FaRegPlusSquare style={{width: "30px", height: "30px"}}  /> , name:"Create", path: "/upload"},
-        {logo:<FaRegCircle style={{width: "30px", height: "30px"}}  /> , name:"Profile", path: "/"},
+        {logo:<FaRegCircle style={{width: "30px", height: "30px"}}  /> , name:"Profile", path: "/profile"},
 ])
 
 
