@@ -1,17 +1,28 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import "./Login.css"
 import { NavLink } from "react-router-dom"
 import { context } from "../pages/Context"
 import { useNavigate } from "react-router-dom"
 
 export default function Login(){
+    
+    const navigate=useNavigate()
+    const token=localStorage.getItem("token")
+
+    useEffect(()=>{
+        if(token){
+            navigate("/")
+        }
+    },[])
+    if(token){
+        return null
+    }
 
 
     const [username, setUsername]=useState("")
     const [password, setPassword]=useState("")
 
     const {user, setUser}=useContext(context)
-    const navigate=useNavigate()
 
 
     async function handleLogin(e){
@@ -24,6 +35,7 @@ export default function Login(){
         try{
             const response=await fetch(`${import.meta.env.VITE_BASE_URL}/user/login`, {
                 method: "POST",
+                credentials:'include',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(verifyUser)
             })

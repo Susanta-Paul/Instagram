@@ -1,10 +1,23 @@
 // import { Axios } from "axios"
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import "./Signup.css"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { context } from "../pages/Context"
 
 export default function Signup(){
+    
+    const navigate =useNavigate()
+    const token=localStorage.getItem("token")
+    
+        useEffect(()=>{
+            if(token){
+                navigate("/")
+                return
+            }
+        },[])
+        if(token){
+            return
+        }
 
     const [fullname, setFullname]=useState("")
     const [username, setUsername]=useState("")
@@ -30,7 +43,12 @@ export default function Signup(){
                 },
                 body: JSON.stringify(newUser)
             })
-            console.log(response)  
+            const data=await response.json()
+            console.log(data)
+
+            setUser(data.user)
+            localStorage.setItem('token', data.token)
+            navigate("/")
         }catch(error){
             console.log("some error occurs", error)
         }
