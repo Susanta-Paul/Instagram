@@ -11,11 +11,13 @@ const userSchema= new mongoose.Schema({
     username: {
         type: String,
         required: true,
+        unique: true,
         minlength: [3, "username must be atleast 3 character long"]
     },
     email: {
         type: String,
         required: true,
+        unique: true,
         minlength: [13, "email must be atleast 13 character long"]
     },
     password: {
@@ -25,17 +27,18 @@ const userSchema= new mongoose.Schema({
     },
     socketId: {
         type: String,
+        unique: true,
         required: false
     },
     followers: [
         {
-         type: Schema.Types.ObjectId, 
+         type: mongoose.Schema.Types.ObjectId, 
          ref: "User"
         }
     ],
     followings: [
         {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         }
     ],
@@ -49,7 +52,7 @@ const userSchema= new mongoose.Schema({
     }
 })
 
-userSchema.methods.generateAuthToken=()=>{
+userSchema.methods.generateAuthToken=function(){
     const token=jwt.sign({_id: this._id}, process.env.SECRET_KEY)
     return token
 }
@@ -63,4 +66,4 @@ userSchema.statics.hashPassword= async function (password) {
 
 const user=mongoose.model("User", userSchema)
 
-mongoose.exports=user
+module.exports=user

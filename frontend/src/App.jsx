@@ -9,6 +9,7 @@ import RootLayout from './RootLayout'
 import Login from './pages/Login.jsx'
 import Signup from './Components/Signup.jsx'
 import Profile from './pages/profile.jsx'
+import UserProtected from './pages/UserProtected.jsx'
 import {Route, createBrowserRouter, createRoutesFromElements, RouterProvider} from "react-router-dom"
 
 function App() {
@@ -17,10 +18,10 @@ function App() {
     createRoutesFromElements(
       <Fragment> 
         <Route path='/' element={<RootLayout />}> 
-          <Route index element={<Home />} /> 
-          <Route path='explore' element={<Explore />} /> 
-          <Route path='upload' element={<Upload />} /> 
-          <Route path='profile' element={<Profile />} /> 
+          <Route index element={<UserProtected><Home /></UserProtected>} /> 
+          <Route path='explore' element={<UserProtected><Explore /></UserProtected>} /> 
+          <Route path='upload' element={<UserProtected><Upload /></UserProtected>} /> 
+          <Route path='profile' element={<UserProtected><Profile /></UserProtected>} /> 
           </Route> 
         <Route path='/login' element={<Login />} /> 
         <Route path='/signup' element={<Signup />} /> 

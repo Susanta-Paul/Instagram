@@ -1,7 +1,43 @@
+// import { Axios } from "axios"
+import { useContext, useState } from "react"
 import "./Signup.css"
 import { NavLink } from "react-router-dom"
+import { context } from "../pages/Context"
 
 export default function Signup(){
+
+    const [fullname, setFullname]=useState("")
+    const [username, setUsername]=useState("")
+    const [email, setEmail]=useState("")
+    const [password, setPassword]=useState("")
+
+    const {user, setUser}= useContext(context)
+
+    async function handleSubmit(e){
+        e.preventDefault()
+        const newUser={
+            fullname: fullname,
+            email: email,
+            password: password,
+            username: username
+        }
+
+        try{
+            const response= await fetch(`${import.meta.env.VITE_BASE_URL}/user/register`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newUser)
+            })
+            console.log(response)  
+        }catch(error){
+            console.log("some error occurs", error)
+        }
+        
+
+    }
+
     return (
         <div>
             <div className="login-page">
@@ -10,11 +46,23 @@ export default function Signup(){
                 </div>
                 <div className="login-form">
                     <img src="https://fontmeme.com/images/instagram-new-logo.png"/>
-                    <form >
-                        <input type="email" placeholder="Enter Email" /><br />
-                        <input type="password" placeholder="Enter Password" /><br />
-                        <input type="text" placeholder="Enter Fullname" /><br />
-                        <input type="text" placeholder="Enter Username"/><br />
+                    <form onSubmit={(e)=>{handleSubmit(e)}} >
+                        <input type="email" placeholder="Enter Email"
+                            onChange={(e)=>{setEmail(e.target.value)}}
+                            value={email}
+                         /><br />
+                        <input type="password" placeholder="Enter Password" 
+                            onChange={(e)=>{setPassword(e.target.value)}}
+                            value={password}
+                        /><br />
+                        <input type="text" placeholder="Enter Fullname" 
+                            onChange={(e)=>{setFullname(e.target.value)}}
+                            value={fullname}
+                        /><br />
+                        <input type="text" placeholder="Enter Username"
+                            onChange={(e)=>{setUsername(e.target.value)}}
+                            value={username}
+                        /><br />
                         <input type="submit" value="Sign Up" style={{marginTop: 10, color: "white", backgroundColor: "blue", cursor: "pointer"}} />
                     </form><hr style={{marginBottom: 20}} />
                     <h3>Have an account?</h3>
