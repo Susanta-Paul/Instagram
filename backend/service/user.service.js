@@ -20,6 +20,5 @@ module.exports.userCreateService= async ({username, fullname, email, password })
         return error
     }
     
-
     
 }

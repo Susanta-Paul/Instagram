@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import "./Profile.css"
 import { context } from "../pages/Context"
 
@@ -6,12 +6,35 @@ import { context } from "../pages/Context"
 export default function Profile(){
 
 
-    const {user, setUser}=useContext(context)
+    const [user, setUser]=useState({})
 
 
-    // useEffect(()=>{
+    useEffect(()=>{
 
-    // }, [])
+        async function fetchData() {
+
+            try{
+                const response= await fetch(`${import.meta.env.VITE_BASE_URL}/user/profile`, {
+                    method: "GET",
+                    headers:{
+                        'Content-Type': 'application/json',
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    credentials: 'include'
+                })
+                const data= await response.json()
+                // console.log(data)
+                setUser(data.user)
+            }catch(error){
+                console.log("Some Error occur", error)
+            }
+            
+        }
+
+        fetchData()
+
+        
+    }, [])
 
 
     return (
@@ -25,11 +48,11 @@ export default function Profile(){
                         <h3 style={{ fontSize: 30 }} >{user.username}</h3>
                         <div className="follow">
                             <h3>100 Posts</h3>
-                            <h3>100K Followers</h3>
-                            <h3>10 Followings</h3>
+                            <h3>{user.followers ? user.followers.length : 0}Followers</h3>
+                            <h3>{user.followings ? user.followings.length : 0} Followings</h3>
                         </div>
                         <div className="bio">
-                            <h4>Fullname</h4>
+                            <h4>{user.fullname}</h4>
                             <p>whole bio goes here.........</p>
                         </div>
                     </div>

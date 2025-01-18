@@ -44,7 +44,7 @@ export default function Signup(){
                 body: JSON.stringify(newUser)
             })
             const data=await response.json()
-            console.log(data)
+            // console.log(data)
 
             setUser(data.user)
             localStorage.setItem('token', data.token)

@@ -9,14 +9,16 @@ const port= process.env.PORT || 3000
 const userRoutes=require("./routes/user.routes")
 const connectToDb=require("./db/db")
 connectToDb()
+const cookie=require("cookie-parser")
 
+app.use(cookie())
 app.use(cors({
     origin: "http://localhost:5173",
     // origin: process.env.ORIGIN,
     credentials: true
 }))
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.json({limit: '50mb'}))
+app.use(express.urlencoded({limit: '50mb', extended: true}))
 
 app.use("/user", userRoutes)
 

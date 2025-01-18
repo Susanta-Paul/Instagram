@@ -40,7 +40,7 @@ export default function Login(){
                 body: JSON.stringify(verifyUser)
             })
             const data=await response.json()
-            console.log(data)
+            // console.log(data)
 
             setUser(data.user)
             localStorage.setItem('token', data.token)
