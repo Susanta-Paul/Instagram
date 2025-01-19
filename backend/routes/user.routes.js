@@ -41,5 +41,6 @@ const upload=multer({
 
 router.post("/upload", AuthMiddleware.userAuthMiddleware,upload.single("file"),userController.uploadController)
 
+router.get("/posts", AuthMiddleware.userAuthMiddleware, userController.getAllPosts)
 
 module.exports=router

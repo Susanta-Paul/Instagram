@@ -1,11 +1,12 @@
 .all-explore-posts{
     width: 90%;
     padding: 30px;
-    column-width: 200px;
+    column-width: 250px;
     /* gap: 5px; */
 }
 .explore-post{
     width: 100%;
+    cursor: pointer;
 }
 .explore-post img{
     width: 100%;

@@ -1,0 +1,28 @@
+.full-length{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0px;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1
+}
+.imag{
+    max-height: 100vh;
+    width: 30vw;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    overflow: hidden;
+}
+.imag img{width: 100%;}
+.comments{
+    height: 90vh;
+    width: 35vw;
+    background-color: white;
+    border: 2px solid black;
+    z-index: 2;
+}

@@ -7,7 +7,7 @@
 }
 .posts{
     width: 50%;
-}
+} 
 .post{
     width: 100%;
     /* border: 2px solid red; */
@@ -31,20 +31,19 @@
     align-items: center;
     gap: 7px;
 }
-.content{
-    height: 70vh;
+.home-content{
+    height: auto;
     width: 100%;
     background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    border-radius: 5px;
+    padding: 0px 10px;
 }
 .content img{
-    height: 100%;
-    width: auto;
-
+    height: auto;
+    width: height;
 }
 .interect{
     display: flex;

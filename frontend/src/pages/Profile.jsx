@@ -1,12 +1,33 @@
 import { useContext, useEffect, useState } from "react"
 import "./Profile.css"
 import { context } from "../pages/Context"
+import ImageModal from "../Components/Modal"
 
 
 export default function Profile(){
 
 
     const [user, setUser]=useState({})
+    const [allpost, setAllpost]=useState([
+        {url: "https://i0.wp.com/plopdo.com/wp-content/uploads/2021/11/feature-pic.jpg?fit=537%2C322&ssl=1" , caption: "any caption"},
+        {url: "https://i0.wp.com/plopdo.com/wp-content/uploads/2021/11/feature-pic.jpg?fit=537%2C322&ssl=1" , caption: "any caption"},
+        {url: "https://i0.wp.com/plopdo.com/wp-content/uploads/2021/11/feature-pic.jpg?fit=537%2C322&ssl=1" , caption: "any caption"},
+        {url: "https://i0.wp.com/plopdo.com/wp-content/uploads/2021/11/feature-pic.jpg?fit=537%2C322&ssl=1" , caption: "any caption"},
+        {url: "https://i0.wp.com/plopdo.com/wp-content/uploads/2021/11/feature-pic.jpg?fit=537%2C322&ssl=1" , caption: "any caption"},
+        {url: "https://i0.wp.com/plopdo.com/wp-content/uploads/2021/11/feature-pic.jpg?fit=537%2C322&ssl=1" , caption: "any caption"},
+        {url: "https://i0.wp.com/plopdo.com/wp-content/uploads/2021/11/feature-pic.jpg?fit=537%2C322&ssl=1" , caption: "any caption"},
+        {url: "https://i0.wp.com/plopdo.com/wp-content/uploads/2021/11/feature-pic.jpg?fit=537%2C322&ssl=1" , caption: "any caption"},
+        {url: "https://i0.wp.com/plopdo.com/wp-content/uploads/2021/11/feature-pic.jpg?fit=537%2C322&ssl=1" , caption: "any caption"},
+        {url: "https://i0.wp.com/plopdo.com/wp-content/uploads/2021/11/feature-pic.jpg?fit=537%2C322&ssl=1" , caption: "any caption"},
+    ])
+
+    const [isOpen, setIsopen]=useState(false)
+    const [imageUrl, setImageurl]=useState("")
+
+    function handleclick(imageurl){
+        setImageurl(imageurl)
+        setIsopen(true)
+    }
 
 
     useEffect(()=>{
@@ -25,6 +46,7 @@ export default function Profile(){
                 const data= await response.json()
                 // console.log(data)
                 setUser(data.user)
+                setAllpost(data.posts)
             }catch(error){
                 console.log("Some Error occur", error)
             }
@@ -57,8 +79,15 @@ export default function Profile(){
                         </div>
                     </div>
                 </div><hr style={{ marginTop: 50, marginBottom: 50}} />
-                <div className="profile-posts"></div>
+                <div className="profile-posts">
+                    {allpost.map((post, index)=>(
+                        <div key={index} className="post" onClick={()=>{handleclick(post.url)}}>
+                            <img src={post.url} />
+                        </div>
+                    ))}
+                </div>
             </div>
+            <ImageModal isOpen={isOpen} onRequestClose={()=>{setIsopen(false)}} imageUrl={imageUrl} />
         </div>
     )
 }

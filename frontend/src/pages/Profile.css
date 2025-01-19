@@ -36,3 +36,17 @@
 .bio{
     font-size: 19px;
 }
+.profile-posts{
+    height: auto;
+    width:100%;
+    /* background-color: red; */
+    column-width: 200px;
+}
+.post{
+    width: 100%;
+    cursor: pointer;
+}
+.post img{
+    width: 100%;
+    border-radius: 10px;
+}

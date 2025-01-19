@@ -5,6 +5,7 @@ const userService=require("../service/user.service")
 const userModel=require("../models/user.model")
 const cookie=require("cookie-parser")
 const uploadToCloudinary=require("../config/cloudinary")
+const postModel=require("../models/post.model")
 
 
 
@@ -70,7 +71,14 @@ module.exports.userLoginController= async (req, res, next)=>{
 
 module.exports.getProfileController= async (req, res, next)=>{
     const user=req.user
-    res.status(200).json({user})
+
+    try{
+        const posts= await postModel.find({userId: req.user._id})
+        res.status(200).json({user, posts})
+    }catch(error){
+        return res.status(401).json({error})
+    }
+
 }
 
 module.exports.uploadController=async (req, res, next)=>{
@@ -82,6 +90,28 @@ module.exports.uploadController=async (req, res, next)=>{
 
     const publicUrl=await uploadToCloudinary(req.file.path)
 
-    res.status(200).json({message: "File Uploaded Successfully!", url: publicUrl})
+    
+    try{
+        const post= await userService.postCreateService({
+            url: publicUrl,
+            caption: caption,
+            userId: req.user._id
+        })
+    }catch(e){
+        return res.status(400).json({error})
+    }
+    
 
+    res.status(200).json({message: "File Uploaded Successfully!"})
+
+}
+
+module.exports.getAllPosts= async (req, res, next)=>{
+    try{
+        const posts= await postModel.find()
+
+        return res.status(200).json({posts})
+    }catch(error){
+        return res.status(401).json({error})
+    }
 }

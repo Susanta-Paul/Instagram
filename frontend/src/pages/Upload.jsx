@@ -1,12 +1,14 @@
 import { useState } from "react";
 import "./Upload.css"
 import { GrGallery } from "react-icons/gr";
-// import {Toaster, toast, saveSettings} from "react-hot-toast"
+import {Toaster, toast} from "react-hot-toast"
+import {useNavigate} from "react-router-dom"
 
 export default function Upload(){
 
     const [file, setFile]=useState(null)
     const [caption, setCaption]=useState("Write Your Caption Here")
+    const navigate=useNavigate()
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -21,24 +23,27 @@ export default function Upload(){
             console.log(`${pair[0]}: ${pair[1]}`); }
 
         try{
-            // toast.promise(
-            //     saveSettings(settings),
-            //      {
-            //        loading: 'Saving...',
-            //        success: <b>Settings saved!</b>,
-            //        error: <b>Could not save.</b>,
-            //      }
-            //    );
-            const response= await fetch(`${import.meta.env.VITE_BASE_URL}/user/upload`, {
+            const fetchPromise= fetch(`${import.meta.env.VITE_BASE_URL}/user/upload`, {
                 method: "POST", 
                 headers: {
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    "authorization": `Bearer ${localStorage.getItem("token")}`
                 }, 
                 credentials: "include", 
                 body: formData, 
             })
+            toast.promise(
+                fetchPromise,
+                {
+                    loading: 'Uploading...',
+                    success: <b>Successfully Uploaded</b>,
+                    error: <b>Failed to uplaod.</b>,
+                }
+            );
+            const response= await fetchPromise
             const data=await response.json()
-            console.log(data)
+            // console.log(data)
+            navigate("/")
+
         }catch(e){
             console.log("Some error Occur", e)
         }
@@ -47,10 +52,10 @@ export default function Upload(){
 
     return (
         <div>
-            {/* <Toaster
+            <Toaster
                 position="top-center"
                 reverseOrder={false}
-                /> */}
+                />
             <div className="upload-body">
                 <div className="upload">
                     <div className="p"><b>Create New Post</b></div><hr />
