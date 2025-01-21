@@ -1,0 +1,9 @@
+.all-messages{
+    height: 80vh;
+    /* background-color: red; */
+    border: 2px solid black;
+    width: 80%;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 0px 30px;
+}

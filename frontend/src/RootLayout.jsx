@@ -19,7 +19,7 @@ export default function RootLayout(){
         {logo:< IoSearchOutline style={{width: "30px", height: "30px"}} /> , name:"Search", path: "/"},
         {logo:<MdOutlineExplore style={{width: "30px", height: "30px"}}  /> , name:"Explore", path: "/explore"},
         {logo:<FaYoutube style={{width: "30px", height: "30px"}}  /> , name:"Reels", path: "/"},
-        {logo:<RiMessengerLine style={{width: "30px", height: "30px"}}  /> , name:"Messages", path: "/"},
+        {logo:<RiMessengerLine style={{width: "30px", height: "30px"}}  /> , name:"Messages", path: "/messages"},
         {logo:<FaRegHeart style={{width: "30px", height: "30px"}}  /> , name:"Notifications", path: "/"},
         {logo:<FaRegPlusSquare style={{width: "30px", height: "30px"}}  /> , name:"Create", path: "/upload"},
         {logo:<FaRegCircle style={{width: "30px", height: "30px"}}  /> , name:"Profile", path: "/profile"},

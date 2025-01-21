@@ -10,6 +10,7 @@ const userRoutes=require("./routes/user.routes")
 const connectToDb=require("./db/db")
 connectToDb()
 const cookie=require("cookie-parser")
+const {initializeSocket}=require("./config/socket")
 
 app.use(cookie())
 app.use(cors({
@@ -22,6 +23,8 @@ app.use(express.urlencoded({limit: '50mb', extended: true}))
 
 app.use("/user", userRoutes)
 
+
+initializeSocket(server)
 
 server.listen(port , ()=>{
     console.log(`server is running on port: ${port}`)

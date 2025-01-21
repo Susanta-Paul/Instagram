@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from "react"
 import "./Signup.css"
 import { NavLink, useNavigate } from "react-router-dom"
 import { context } from "../pages/Context"
+import { connectSocket } from "./Socket"
 
 export default function Signup(){
     
@@ -44,11 +45,14 @@ export default function Signup(){
                 body: JSON.stringify(newUser)
             })
             const data=await response.json()
-            // console.log(data)
+            console.log(data)
 
             setUser(data.user)
-            localStorage.setItem('token', data.token)
-            navigate("/")
+            if(data.token){
+                localStorage.setItem('token', data.token)
+                connectSocket()
+                navigate("/")
+            }
         }catch(error){
             console.log("some error occurs", error)
         }

@@ -3,6 +3,7 @@ import "./Login.css"
 import { NavLink } from "react-router-dom"
 import { context } from "../pages/Context"
 import { useNavigate } from "react-router-dom"
+import { connectSocket } from "../Components/Socket"
 
 export default function Login(){
     
@@ -43,8 +44,13 @@ export default function Login(){
             // console.log(data)
 
             setUser(data.user)
-            localStorage.setItem('token', data.token)
-            navigate("/")
+            if(data.token){
+                localStorage.setItem('token', data.token)
+                connectSocket()
+                navigate("/")
+            }
+            else{console.log("Token Not Found")}
+            
 
         }catch(error){
             console.log("some error occurs", error)

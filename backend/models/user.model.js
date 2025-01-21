@@ -28,7 +28,8 @@ const userSchema= new mongoose.Schema({
     socketId: {
         type: String,
         unique: true,
-        required: false
+        required: false,
+        sparse: true,
     },
     followers: [
         {
