@@ -6,6 +6,7 @@ const userModel=require("../models/user.model")
 const cookie=require("cookie-parser")
 const uploadToCloudinary=require("../config/cloudinary")
 const postModel=require("../models/post.model")
+const user = require("../models/user.model")
 
 
 
@@ -113,5 +114,44 @@ module.exports.getAllPosts= async (req, res, next)=>{
         return res.status(200).json({posts})
     }catch(error){
         return res.status(401).json({error})
+    }
+}
+
+module.exports.visitProfile= async (req, res, next)=>{
+    const username=req.params.username
+
+    try{
+        const user=await userModel.findOne({username: username})
+        const posts= await postModel.find({userId: user._id})
+
+        return res.status(200).json({user, posts})
+    }catch(error){
+        return res.status(400).json({error})
+    }
+}
+
+
+module.exports.follow= async (req, res, next)=>{
+    const {username}=req.body
+
+    try{
+        const userToFollow = await userModel.findOne({username: username})
+
+        const newUserToFollow= await userModel.findByIdAndUpdate(
+            userToFollow._id,
+            {$push: {followers: req.user._id}},
+            { new: true, useFindAndModify: false }
+        )
+
+        const userFollowing=await userModel.findByIdAndUpdate(
+            req.user._id,
+            {$push: {followings: userToFollow._id}},
+            { new: true, useFindAndModify: false }
+        )
+
+        return res.status(201).json({user: newUserToFollow})
+
+    }catch(error){
+        return res.status(400).json({error})
     }
 }

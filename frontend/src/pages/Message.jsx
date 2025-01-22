@@ -1,12 +1,15 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./Message.css"
 import socket from "../Components/Socket"
+import {toast, Toaster} from "react-hot-toast"
+import { useParams } from "react-router-dom"
 
 export default function Message(){
 
+    const {username}=useParams()
     const [msg, setMsg]=useState("")
 
-    const [whom, setWhom]=useState("")
+    const [whom, setWhom]=useState(username)
 
     const [allmessages, setAllmessages]=useState([
         {message: "HEllo, world !", type: "send"},
@@ -16,20 +19,44 @@ export default function Message(){
     function handlesubmit(e){
         e.preventDefault()
         const ano={message: msg, type: "send", to: whom}
-        setAllmessages([...allmessages, ano])
+        setAllmessages(prevMessages => [...prevMessages, ano])
         setMsg("")
 
         socket.emit("sendMessage", {ano})
+        toast.success('Message Send!')
     }
 
-    socket.on("recieveMessage", (data)=>{
-        console.log(data.message)
-        setAllmessages([...allmessages, data])
-    })
+    useEffect(()=>{
+        socket.on("recieveMessage", (data)=>{
+            console.log(data.message)
+            toast('New Message Recieved!',
+                {
+                icon: '🔔',
+                style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+                }
+            );
+            setAllmessages(prevMessages => [...prevMessages, data])
+        })
+
+        return () => {
+            socket.off("recieveMessage");
+        };
+
+    }, [])
+
+    
 
 
     return(
         <div style={{height: "100%" , width: "100%", display: "flex", alignItems: "center", flexDirection: "column", gap: 15}}>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <input type="text" placeholder="To Whom"
                 value={whom} 
                 onChange={(e)=>{setWhom(e.target.value)}}

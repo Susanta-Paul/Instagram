@@ -43,4 +43,10 @@ router.post("/upload", AuthMiddleware.userAuthMiddleware,upload.single("file"),u
 
 router.get("/posts", AuthMiddleware.userAuthMiddleware, userController.getAllPosts)
 
+router.get("/visitprofile/:username", AuthMiddleware.userAuthMiddleware, userController.visitProfile)
+
+// router.post("/follow",[
+//     body("username").isLength({min: 4}).withMessage("Username must be atleast 4 character long")
+// ], AuthMiddleware.userAuthMiddleware, userController.performFollow)
+
 module.exports=router

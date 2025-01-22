@@ -25,7 +25,7 @@ function initializeSocket(server){
 
     async function getSocketId({username}){
         const user= await userModel.findOne({username: username})
-        console.log("socketId Found of", username)
+        // console.log("socketId Found of", username)
         return user.socketId
     }
 
@@ -38,13 +38,13 @@ function initializeSocket(server){
             const decoded= jwt.verify(data.token , process.env.SECRET_KEY)
             const user= await updateUserSocket({userId: decoded._id, socketId: socket.id })
             
-            console.log(user)
+            // console.log(user)
         })
 
         socket.on("sendMessage", async (data)=>{
             const socketId= await getSocketId({username: data.ano.to})
             io.to(socketId).emit("recieveMessage", {message: data.ano.message, type: "recieve"})
-            console.log(socketId)
+            // console.log("Message send")
         })
 
         socket.on("disconnect", ()=>{

@@ -1,0 +1,84 @@
+*{
+    box-sizing: border-box;
+}
+.complete-profile{
+    width: 80%;
+    /* background-color: red; */
+    height: 100vh;
+}
+.profile-image{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.profile-image img{
+    width: 100%;
+    object-fit: contain;
+}
+.profile{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding-top: 40px;
+}
+.profile-data{
+    width: 40%;
+    /* background-color: red; */
+}
+.follow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    margin: 20px 0px;
+}
+.bio{
+    font-size: 19px;
+}
+.profile-posts{
+    height: auto;
+    width:100%;
+    /* background-color: red; */
+    column-width: 200px;
+}
+.post{
+    width: 100%;
+    cursor: pointer;
+}
+.post img{
+    width: 100%;
+    border-radius: 10px;
+}
+.username{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+#follow{
+    font-size: 17px;
+    background-color: rgb(0, 149, 246);
+    border-radius: 10px;
+    padding: 8px 10px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    &:hover{
+        background-color: rgb(0, 127, 246);
+    }
+}
+#message{
+    font-size: 17px;
+    background-color: rgb(213, 213, 213);
+    border-radius: 10px;
+    padding: 8px 10px;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    &:hover{
+        background-color: rgb(200, 200, 200);
+    }
+}
