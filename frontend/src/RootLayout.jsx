@@ -19,7 +19,7 @@ export default function RootLayout(){
 
     const [allfeatues, setFeatures] = useState([
         {logo: <GoHome style={{width: "30px", height: "30px"}} /> , name:"Home", path: "/"},
-        {logo:< IoSearchOutline style={{width: "30px", height: "30px"}} /> , name:"Search", path: "/"},
+        {logo:< IoSearchOutline style={{width: "30px", height: "30px"}} /> , name:"Search", path: "/search"},
         {logo:<MdOutlineExplore style={{width: "30px", height: "30px"}}  /> , name:"Explore", path: "/explore"},
         {logo:<FaYoutube style={{width: "30px", height: "30px"}}  /> , name:"Reels", path: "/"},
         {logo:<RiMessengerLine style={{width: "30px", height: "30px"}}  /> , name:"Messages", path: "/messages/towhom"},

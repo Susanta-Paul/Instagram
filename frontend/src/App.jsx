@@ -12,6 +12,7 @@ import Profile from './pages/profile.jsx'
 import UserProtected from './pages/UserProtected.jsx'
 import Message from './pages/Message.jsx'
 import Anyprofile from './pages/Anyprofile.jsx'
+import Search from './Components/Search.jsx'
 import {Route, createBrowserRouter, createRoutesFromElements, RouterProvider} from "react-router-dom"
 
 function App() {
@@ -24,8 +25,9 @@ function App() {
           <Route path='explore' element={<UserProtected><Explore /></UserProtected>} /> 
           <Route path='upload' element={<UserProtected><Upload /></UserProtected>} /> 
           <Route path='profile' element={<UserProtected><Profile /></UserProtected>} /> 
+          <Route path='search' element={<UserProtected><Search /></UserProtected>} /> 
           <Route path='messages/:username' element={<UserProtected><Message/></UserProtected>} /> 
-          <Route path=':username' element={<UserProtected><Anyprofile /></UserProtected>} /> 
+          <Route path=':username' element={<UserProtected><Anyprofile/></UserProtected>} /> 
           </Route> 
         <Route path='/login' element={<Login />} /> 
         <Route path='/signup' element={<Signup />} />
