@@ -64,7 +64,7 @@ export default function Profile(){
             <div className="complete-profile">
                 <div className="profile">
                     <div className="profile-image">
-                        <img src="https://photosking.net/wp-content/uploads/2024/06/korean-girl-dp_49.webp" alt="profile image" />
+                        <img src="https://e7.pngegg.com/pngimages/798/436/png-clipart-computer-icons-user-profile-avatar-profile-heroes-black-thumbnail.png" alt="profile image" />
                     </div>
                     <div className="profile-data">
                         <h3 style={{ fontSize: 30 }} >{user.username}</h3>
