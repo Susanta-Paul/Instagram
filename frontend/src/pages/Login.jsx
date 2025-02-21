@@ -64,7 +64,7 @@ export default function Login(){
         <div>
             <div className="login-page">
                 <div className="image">
-                    <img src="\src\assets\Screenshot 2025-01-13 130554.png" alt="Login Image" />
+                    <img src="https://img.freepik.com/free-photo/woman-showing-instagram-icon_53876-65416.jpg" alt="Login Image" />
                 </div>
                 <div className="login-form">
                     <img src="https://fontmeme.com/images/instagram-new-logo.png"/>
