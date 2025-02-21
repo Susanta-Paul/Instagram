@@ -14,7 +14,7 @@ const {initializeSocket}=require("./config/socket")
 
 app.use(cookie())
 app.use(cors({
-    origin: "https://project-insta-susanta.netlify.app/login",
+    origin: "https://project-insta-susanta.netlify.app",
     // origin: process.env.ORIGIN,
     credentials: true
 }))
